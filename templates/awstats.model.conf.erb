@@ -1,0 +1,22 @@
+### THIS FILE IS MANAGED BY PUPPET. ANY MANUAL CHANGES WILL GET OVERWRITTEN.
+
+# Basic parameters for this site
+LogFile="<%= logfile %>"
+LogType=<%= logtype %>
+LogFormat=<%= logformat %>
+SiteDomain="<%= sitedomain %>
+
+# We probably want more statistics rather than less. If nothing else, having 
+# everything enabled means less broken links in the awstats page.
+ShowDomainStats=1
+ShowHostsStats=1
+ShowAuthenticatedUsers=1
+ShowRobotsStats=1
+ShowSessionStats=1
+ShowPagesStats=1
+ShowOSStats=1
+ShowBrowserStats=1
+ShowOriginStats=1
+ShowKeyphrasesStats=1
+ShowKeywordStats=1
+
