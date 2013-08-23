@@ -4,7 +4,9 @@
 LogFile="<%= logfile %>"
 LogType=<%= logtype %>
 LogFormat=<%= logformat %>
-SiteDomain="<%= sitedomain %>
+SiteDomain="<%= sitedomain %>"
+DirData="<%= scope.lookupvar('awstats::config::dirdata') %>"
+HostAliases="<%= hostaliases %>"
 
 # We probably want more statistics rather than less. If nothing else, having 
 # everything enabled means less broken links in the awstats page.
@@ -19,4 +21,4 @@ ShowBrowserStats=1
 ShowOriginStats=1
 ShowKeyphrasesStats=1
 ShowKeywordStats=1
-
+ShowDownloadStats=1

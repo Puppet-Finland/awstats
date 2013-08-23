@@ -16,6 +16,9 @@
 # [*sitedomain*]
 #   Name of the "main intranet webserver used to reach the web site". For 
 #   example "domain.com".
+# [*hostaliases*]
+#   List of domain names, addresses and virtual host definitions that can be 
+#   used to access this site (as a string). Defaults to $title.
 # [*logfile*]
 #   Location of the logfile. This depends on the operating system, webserver 
 #   type and webserver configuration and can't be reliably guessed.
@@ -40,6 +43,7 @@ define awstats::site
 (
     $site = $title,
     $sitedomain,
+    $hostaliases = $title,
     $logfile,
     $logtype = 'W',
     $logformat = '1',

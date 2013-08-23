@@ -14,11 +14,16 @@
 #   to '', which means that no reports are generated or updated via cron. See 
 #   awstats::site for more details on advantages and limitations of this 
 #   cron-based approach.
+# [*dirdata*]
+#   There directory where data files are stored. These data files are used to 
+#   generate the HTML reports. Defaults to '/var/cache/awstats', which is valid 
+#   for Debian.
 #
 # == Examples
 #
 # class { 'awstats':
-#  htmlbasedir => '/var/lib/awstats',
+#   htmlbasedir => '/var/lib/awstats',
+#   dirdata => '/var/lib/awstats',
 # }
 #
 # awstats::site { 'site.domain.com':
@@ -39,13 +44,15 @@
 #
 class awstats
 (
-    $htmlbasedir = ''
+    $htmlbasedir = '',
+    $dirdata = '/var/cache/awstats',
 )
 {
     include awstats::install
 
     class { 'awstats::config':
         htmlbasedir => $htmlbasedir,
+        dirdata => $dirdata,
     }
 
 }
