@@ -55,4 +55,9 @@ class awstats
         dirdata => $dirdata,
     }
 
+    # OS-specific configurations
+    if $::lsbdistcodename == 'precise' {
+        include awstats::patch::buildstaticpages
+    }
+
 }
