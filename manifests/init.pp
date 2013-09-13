@@ -48,10 +48,14 @@ class awstats
     $dirdata = '/var/cache/awstats',
 )
 {
+# Rationale for this is explained in init.pp of the sshd module
+if hiera('manage_awstats') != 'false' {
+
     include awstats::install
 
     class { 'awstats::config':
         htmlbasedir => $htmlbasedir,
         dirdata => $dirdata,
     }
+}
 }
