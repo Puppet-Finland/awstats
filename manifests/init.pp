@@ -21,17 +21,17 @@
 #
 # == Examples
 #
-# class { 'awstats':
-#   htmlbasedir => '/var/lib/awstats',
-#   dirdata => '/var/lib/awstats',
-# }
+#   class { 'awstats':
+#       htmlbasedir => '/var/lib/awstats',
+#       dirdata => '/var/lib/awstats',
+#   }
 #
-# awstats::site { 'site.domain.com':
-#   sitedomain => 'www.domain.com',
-#   logfile => '/var/log/nginx/site.domain.com.access.log',
-#   minute => '15',
-#   hour => '00',
-# }
+#   awstats::site { 'site.domain.com':
+#       sitedomain => 'www.domain.com',
+#       logfile => '/var/log/nginx/site.domain.com.access.log',
+#       minute => '15',
+#       hour => '00',
+#   }
 #
 # == Authors
 #
@@ -39,8 +39,7 @@
 #
 # == License
 #
-# BSD-lisence
-# See file LICENSE for details
+# BSD-license. See file LICENSE for details.
 #
 class awstats
 (
