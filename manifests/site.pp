@@ -24,7 +24,7 @@
 #   type and webserver configuration and can't be reliably guessed.
 # [*logtype*]
 #   Type of the log. Defaults to 'W' (webserver log). Other options are listed 
-# in awstats documentation (link above).
+#   in awstats documentation (link above).
 # [*logformat*]
 #   Logfile format. Defaults to '1'. Other options are listed in awstats 
 #   documentation (link above).
