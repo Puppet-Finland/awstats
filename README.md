@@ -1,5 +1,4 @@
-awstats
-=======
+# awstats
 
 A Puppet module for managing awstats
 
@@ -27,3 +26,23 @@ standard Debian setup you'd do
 
 Once this is finished, you can let Puppet revert the config file back to it's 
 correct contents.
+
+# Module usage
+
+* [Class: awstats](manifests/init.pp)
+* [Define: awstats::site](manifests/site.pp)
+
+# Dependencies
+
+See [metadata.json](metadata.json).
+
+# Operating system support
+
+This module has been tested on
+
+* Debian 7
+* Ubuntu 12.04
+
+It should work on other *NIX-like operating systems with minor modifications.
+
+For details see [params.pp](manifests/params.pp).
