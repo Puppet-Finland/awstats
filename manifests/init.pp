@@ -18,6 +18,8 @@
 #   There directory where data files are stored. These data files are used to 
 #   generate the HTML reports. Defaults to '/var/cache/awstats', which is valid 
 #   for Debian.
+# [*sites*]
+#   A hash of awstats::site resources to realize.
 #
 # == Examples
 #
@@ -45,6 +47,7 @@ class awstats
 (
     $htmlbasedir = '',
     $dirdata = '/var/cache/awstats',
+    $sites = {}
 )
 {
 # Rationale for this is explained in init.pp of the sshd module
@@ -56,5 +59,7 @@ if hiera('manage_awstats', 'true') != 'false' {
         htmlbasedir => $htmlbasedir,
         dirdata => $dirdata,
     }
+
+    create_resources('awstats::site', $sites)
 }
 }
