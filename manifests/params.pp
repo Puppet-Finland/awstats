@@ -15,8 +15,7 @@ class awstats::params {
             $awstats = '/usr/lib/cgi-bin/awstats.pl'
         }
         default: {
-            $awstats_buildstaticpages = '/usr/share/awstats/tools/awstats_buildstaticpages.pl'
-            $awstats = '/usr/lib/cgi-bin/awstats.pl'
+            fail("Unsupported OS: ${::osfamily}")
         }
     }
 }
