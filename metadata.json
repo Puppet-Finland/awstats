@@ -1,0 +1,11 @@
+{
+  "name": "puppetfinland-awstats",
+  "version": "0.2.0",
+  "author": "Puppet-Finland team",
+  "license": "BSD license",
+  "summary": "Setup awstats",
+  "source": "https://github.com/Puppet-Finland/awstats.git",
+  "project_page": "https://github.com/Puppet-Finland/awstats",
+  "dependencies": [
+  ]
+}
