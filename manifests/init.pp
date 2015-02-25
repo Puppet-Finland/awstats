@@ -3,12 +3,36 @@
 #
 # Install and configure awstats.
 #
-# Currently this module does not integrate with webserver access controls.
-# Updating the reports via cron is supported, but has certain inherent
-# limitations discussed in detail in the awstats::site define.
+# Currently this module does not integrate with webserver access controls. 
+# Typically you'd add something like this to nginx site:
+#
+#   location /statistics/ {
+#       alias /var/cache/awstats/;
+#       auth_basic "Restricted";
+#       auth_basic_user_file /etc/nginx/htpasswd/awstats;
+#       autoindex on;
+#   }
+#
+# Or to an Apache2 site:
+#
+#   Alias /statistics /var/cache/awstats
+#   <Directory /var/cache/awstats>
+#       Options Indexes
+#       AuthName Login
+#       AuthType Basic
+#       AuthUserFile /etc/apache2/htusers
+#       Require valid-user
+#       Order allow,deny
+#       Allow from 10.0.0.0/8
+#   </Directory>
+#
+# Debian "awstats" package automatically installs cronjobs that update the 
+# statistics. An alternative is to use awstats::site to define the cronjobs.
 #
 # == Parameters
 #
+# [*manage*]
+#   Manage awstats using Puppet. Valid values 'yes' (default) and 'no'.
 # [*htmlbasedir*]
 #   The directory under which each per-site report directory is placed. Defaults 
 #   to '', which means that no reports are generated or updated via cron. See 
@@ -45,13 +69,14 @@
 #
 class awstats
 (
+    $manage = 'yes',
     $htmlbasedir = '',
     $dirdata = '/var/cache/awstats',
     $sites = {}
 )
 {
-# Rationale for this is explained in init.pp of the sshd module
-if hiera('manage_awstats', 'true') != 'false' {
+
+if $manage == 'yes' {
 
     include awstats::install
 
