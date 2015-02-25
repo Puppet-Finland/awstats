@@ -27,7 +27,19 @@
 #   </Directory>
 #
 # Debian "awstats" package automatically installs cronjobs that update the 
-# statistics. An alternative is to use awstats::site to define the cronjobs.
+# statistics. However, it's quite possible that the default cronjobs (in 
+# /etc/cron.d/awstats) lack permissions to read Apache2's logfile. In this case 
+# the cronjobs have to be modified to run as root instead of www-data. An 
+# alternative is to use awstats::site to define the cronjobs.
+#
+# Note that at least on Debian the awstats update script assume all .conf files 
+# have SiteDomain defined in them. As this module does not modify the default 
+# awstats.conf file, awstats will start sending useless warnings unless 
+# awstats.conf.local is added with contents like this:
+#
+#   SiteDomain="dummy"
+#
+# Both of the above two problems should definitely be fixed in this module.
 #
 # == Parameters
 #
