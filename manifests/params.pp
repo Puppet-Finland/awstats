@@ -5,6 +5,8 @@
 #
 class awstats::params {
 
+    include ::os::params
+
     case $::osfamily {
         'RedHat': {
             $awstats_buildstaticpages = '/usr/bin/awstats_buildstaticpages.pl'

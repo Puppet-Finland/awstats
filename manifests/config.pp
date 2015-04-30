@@ -8,7 +8,8 @@ class awstats::config
 (
     $htmlbasedir,
     $dirdata
-)
+
+) inherits awstats::params
 {
     # Add content if necessary
 }

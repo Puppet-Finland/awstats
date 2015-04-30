@@ -7,5 +7,6 @@
   "source": "https://github.com/Puppet-Finland/awstats.git",
   "project_page": "https://github.com/Puppet-Finland/awstats",
   "dependencies": [
+    { "name": "puppetfinland/os", "version_requirement": ">= 0.5.6" }
   ]
 }

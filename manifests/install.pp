@@ -3,10 +3,10 @@
 #
 # Install awstats
 #
-class awstats::install {
+class awstats::install inherits awstats::params {
 
     package { 'awstats-awstats':
-        name => 'awstats',
         ensure => installed,
+        name   => 'awstats',
     }
 }

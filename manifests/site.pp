@@ -41,10 +41,10 @@
 #
 define awstats::site
 (
-    $site = $title,
     $sitedomain,
-    $hostaliases = $title,
     $logfile,
+    $site = $title,
+    $hostaliases = $title,
     $logtype = 'W',
     $logformat = '1',
     $hour='*',
@@ -52,15 +52,15 @@ define awstats::site
     $email = $::servermonitor
 )
 {
-    include awstats::params
+    include ::awstats::params
 
     file { "awstats-awstats.${site}.conf":
-        name => "/etc/awstats/awstats.${site}.conf",
-        ensure => present,
+        ensure  => present,
+        name    => "/etc/awstats/awstats.${site}.conf",
         content => template('awstats/awstats.model.conf.erb'),
-        owner => root,
-        group => root,
-        mode => 644,
+        owner   => $::os::params::adminuser,
+        group   => $::os::params::admingroup,
+        mode    => '0644',
         require => Class['awstats::install'],
     }
 
@@ -79,16 +79,16 @@ define awstats::site
     # Note this cronjob is only activate if $htmlbasedir is specifically defined 
     # for the awstats class.
     #
-    if $::awstats::config::htmlbasedir == '' {
-        # We were not told where to put the reports, so we don't generate them
-    } else {
+    if $::awstats::config::htmlbasedir {
         cron { "awstats-${site}-cron":
-            command => "nice -n 19 ${::awstats::params::awstats_buildstaticpages} -update -config=${site} -awstatsprog=${::awstats::params::awstats} -dir=${::awstats::config::htmlbasedir}/${site}/",
-            user => root,
-            hour => $hour,
-            minute => $minute,
-            weekday => '*',
+            command     => "nice -n 19 ${::awstats::params::awstats_buildstaticpages} -update -config=${site} -awstatsprog=${::awstats::params::awstats} -dir=${::awstats::config::htmlbasedir}/${site}/",
+            user        => $::os::params::adminuser,
+            hour        => $hour,
+            minute      => $minute,
+            weekday     => '*',
             environment => "MAILTO=${email}",
         }
+    } else {
+        # We were not told where to put the reports, so we don't generate them
     }
 }

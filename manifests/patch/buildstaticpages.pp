@@ -7,17 +7,15 @@
 #
 # This bug is present in awstats 7.0 bundled with Ubuntu 12.04.
 #
-class awstats::patch::buildstaticpages {
-
-    include awstats::params
+class awstats::patch::buildstaticpages inherits awstats::params {
 
     file { 'awstats-awstats_buildstaticpages.pl':
-        ensure => present,
-        name => "${::awstats::params::awstats_buildstaticpages}",
+        ensure  => present,
+        name    => $::awstats::params::awstats_buildstaticpages,
         content => template('awstats/awstats_buildstaticpages.pl.erb'),
-        owner => root,
-        group => root,
-        mode => 755,
+        owner   => $::os::params::adminuser,
+        group   => $::os::params::admingroup,
+        mode    => '0755',
         require => Class['awstats::install'],
     }
 }

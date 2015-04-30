@@ -82,7 +82,7 @@
 class awstats
 (
     $manage = 'yes',
-    $htmlbasedir = '',
+    $htmlbasedir = undef,
     $dirdata = '/var/cache/awstats',
     $sites = {}
 )
@@ -90,11 +90,11 @@ class awstats
 
 if $manage == 'yes' {
 
-    include awstats::install
+    include ::awstats::install
 
-    class { 'awstats::config':
+    class { '::awstats::config':
         htmlbasedir => $htmlbasedir,
-        dirdata => $dirdata,
+        dirdata     => $dirdata,
     }
 
     create_resources('awstats::site', $sites)
