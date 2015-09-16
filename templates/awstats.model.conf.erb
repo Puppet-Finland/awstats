@@ -1,12 +1,12 @@
 ### THIS FILE IS MANAGED BY PUPPET. ANY MANUAL CHANGES WILL GET OVERWRITTEN.
 
 # Basic parameters for this site
-LogFile="<%= logfile %>"
-LogType=<%= logtype %>
-LogFormat=<%= logformat %>
-SiteDomain="<%= sitedomain %>"
+LogFile="<%= @logfile %>"
+LogType=<%= @logtype %>
+LogFormat=<%= @logformat %>
+SiteDomain="<%= @sitedomain %>"
 DirData="<%= scope.lookupvar('awstats::config::dirdata') %>"
-HostAliases="<%= hostaliases %>"
+HostAliases="<%= @hostaliases %>"
 
 # We probably want more statistics rather than less. If nothing else, having 
 # everything enabled means less broken links in the awstats page.
